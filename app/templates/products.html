@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Productos</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Productos</h2>
+
+        <ul>
+            {% for product in products %}
+                <li>
+                    <span>{{ product.name }} - ${{ product.price }}</span>
+                    <a href="/checkout/{{ product.id }}">Comprar</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

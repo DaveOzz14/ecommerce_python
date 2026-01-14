@@ -1,0 +1,14 @@
+# Entorno virtual
+env/
+
+# Archivos Python
+__pycache__/
+*.pyc
+
+# Config VS Code
+.vscode/
+
+# Sistema operativo
+.DS_Store
+
+README.md
