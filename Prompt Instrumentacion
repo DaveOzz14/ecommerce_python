@@ -1,0 +1,131 @@
+Act as a Senior Staff Software Engineer specialized in
+OpenTelemetry, Grafana Cloud, and production-grade observability.
+
+You have access to:
+- A GitHub MCP server with branch and commit permissions
+
+Your behavior MUST follow a strict, step-by-step execution pipeline.
+You MUST execute actions, not describe intentions.
+
+OBJECTIVE
+Analyze, instrument, and commit OpenTelemetry observability
+(TRACES, METRICS, LOGS) into a NEW GitHub branch named: app_otel
+
+Target repository:DaveOzz14/ecommerce_python
+
+PIPELINE – MANDATORY EXECUTION STEPS
+STEP 1 — FULL REPOSITORY ANALYSIS (READ-ONLY)
+1. Read the ENTIRE repository from the default branch.
+2. Inspect all directories and files.
+3. Automatically detect and document internally:
+   - Programming language(s)
+   - Backend framework (FastAPI, Flask, Django, Primefaces, SpringBoot, etc)
+   - Frontend/UI technologies if present
+   - Dependency manager and runtime
+4. Inspect EXACT dependency versions from:
+   - requirements.txt / pyproject.toml / package.json / pom.xml , etc
+5. Do NOT modify or generate files in this step.
+
+This step MUST complete before moving forward.
+
+STEP 2 — OBSERVABILITY DESIGN & COMPATIBILITY VALIDATION
+1. Select ONLY official, stable OpenTelemetry SDKs.
+2. Ensure FULL compatibility with detected versions.
+3. Do NOT upgrade dependencies unless strictly required.
+4. Design a configuration that:
+   - Exports telemetry on FIRST RUN
+   - Produces ZERO runtime, export, or startup errors
+5. OTLP transport MUST be:
+   - http/protobuf ONLY
+
+STEP 3 — ENVIRONMENT CONFIGURATION
+1. Create a new `.env` file at the repository root.
+2. The application MUST read ALL OTEL configuration from `.env`.
+3. NO hardcoded OpenTelemetry values in source code.
+
+The `.env` file MUST contain EXACTLY:
+OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
+OTEL_EXPORTER_OTLP_ENDPOINT=https://otlp-gateway-prod-us-east-2.grafana.net/otlp
+OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=https://otlp-gateway-prod-us-east-2.grafana.net/otlp/v1/traces
+OTEL_EXPORTER_OTLP_METRICS_ENDPOINT=https://otlp-gateway-prod-us-east-2.grafana.net/otlp/v1/metrics
+OTEL_EXPORTER_OTLP_LOGS_ENDPOINT=https://otlp-gateway-prod-us-east-2.grafana.net/otlp/v1/logs
+OTEL_EXPORTER_OTLP_HEADERS=Authorization=Basic MTQ4ODg5MDpnbGNfZXlKdklqb2lNVFl6TlRRNE5pSXNJbTRpT2lKemRHRmpheTB4TkRnNE9Ea3dMVzkwYkhBdGQzSnBkR1V0YkdGaWMxOHlYeklpTENKcklqb2lOamh6TTBWMU4wYzVRemxLTXpOcU9WZzRiMkp1UkhoTElpd2liU0k2ZXlKeUlqb2ljSEp2WkMxMWN5MWxZWE4wTFRBaWZYMD0=
+OTEL_SERVICE_NAME=derived-from-repository-name
+OTEL_RESOURCE_ATTRIBUTES=deployment.environment=production
+
+4. If `.env.example` exists, update it accordingly.
+
+STEP 4 — FULL OPEN TELEMETRY INSTRUMENTATION
+You MUST implement ALL signals:
+
+✔ Distributed Tracing  
+✔ Metrics  
+✔ Logs with trace/span correlation  
+
+Mandatory requirements:
+1. Explicitly configure:
+   - TracerProvider
+   - MeterProvider
+   - LoggerProvider
+2. Use Batch processors for all exporters.
+3. Configure a Resource with:
+   - service.name
+   - service.version (if available)
+   - deployment.environment
+4. Enable automatic instrumentation for:
+   - HTTP server
+   - HTTP client
+   - Database
+   - Messaging (if applicable)
+
+STEP 5 — MANUAL BUSINESS SPANS (NON-NEGOTIABLE)
+You MUST add explicit manual spans for EVERY user-triggered action:
+- Each API endpoint
+- Each form submission
+- Each UI interaction
+- Each business transaction (login, checkout, payment, etc.)
+
+For EACH manual span:
+- Business-oriented span names
+- Business attributes (user.id, order.id, payment.id, etc.)
+- Exception recording
+- ERROR status on failures
+- Correct parent-child context
+
+STEP 6 — METRICS & LOGS IMPLEMENTATION
+Metrics:
+- Explicit MeterProvider
+- HTTP RED metrics
+- Custom business metrics
+
+Logs:
+- Explicit LoggerProvider
+- Export via /otlp/v1/logs
+- Trace & span correlation
+- Integrate with existing logging framework
+
+STEP 7 — CREATE NEW BRANCH AND COMMIT
+1. Create a NEW branch named: app_otel
+2. The branch MUST include:
+   - All modified and not modified source files
+   - Dependency updates
+   - `.env` and `.env.example`
+3. Commit ALL generated ,modified and not modified files to `app_otel`.
+4. NO changes must be committed to the original branch.
+
+STEP 8 — FINAL VALIDATION
+Before finishing, verify internally that:
+- No OTLP 4xx or 5xx errors occur
+- Traces, metrics, and logs reach Grafana Cloud
+- Application starts successfully on first run
+- No deprecated or experimental APIs are used
+
+FINAL OUTPUT REQUIREMENTS
+- Show FULL content of each modified file
+- Include file paths
+- Code must be production-ready
+- Suitable for Pull Request review
+
+Execute this pipeline now, strictly in order.
+Do NOT skip steps.
+Do NOT describe actions — perform them.
