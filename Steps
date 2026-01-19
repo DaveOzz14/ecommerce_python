@@ -28,14 +28,12 @@ Crear Variables de entorno en el Servidor en donde esta el sistema: Tomando el B
 
 $env:OTEL_EXPORTER_OTLP_PROTOCOL="http/protobuf" 
 $env:OTEL_EXPORTER_OTLP_ENDPOINT="https://otlp-gateway-prod-us-east-2.grafana.net/otlp" 
-$env:OTEL_EXPORTER_OTLP_HEADERS="Authorization=Basic%20MTQ4ODg5MDpnbGNfZXlKdklqb2lNVFl6TlRRNE5pSXNJbTRpT2lKemRHRmpheTB4TkRnNE9Ea3dMVzkwYkhBdGQzSnBkR1V0YkdGaWMxOHlYeklpTENKcklqb2lOamh6TTBWMU4wYzVRemxLTXpOcU9WZzRiMkp1UkhoTElpd2liU0k2ZXlKeUlqb2ljSEp2WkMxMWN5MWxZWE4wTFRBaWZYMD0=" 
+$env:OTEL_EXPORTER_OTLP_HEADERS="Authorization=Basic%20MTQ5OTM3MjpnbGNfZXlKdklqb2lNVFkwTkRrd01TSXNJbTRpT2lKemRHRmpheTB4TkRrNU16Y3lMVzkwYkhBdGQzSnBkR1V0WjNKaFptRnVZVjh4SWl3aWF5STZJblJDT1RGYU9FWnBZelJIUVdsaU5YVmhiSGczTmpFek15SXNJbTBpT25zaWNpSTZJbkJ5YjJRdGRYTXRaV0Z6ZEMwd0luMTk=" 
 $env:OTEL_EXPORTER_OTLP_TRACES_ENDPOINT="https://otlp-gateway-prod-us-east-2.grafana.net/otlp/v1/traces" 
 $env:OTEL_EXPORTER_OTLP_METRICS_ENDPOINT=https://otlp-gateway-prod-us-east-2.grafana.net/otlp/v1/metrics
 $env:OTEL_EXPORTER_OTLP_LOGS_ENDPOINT=https://otlp-gateway-prod-us-east-2.grafana.net/otlp/v1/logs
 $env:OTEL_SERVICE_NAME="ecommerce-python" 
-$env:OTEL_RESOURCE_ATTRIBUTES="deployment.environment=production,service.version=1.0.0" 
-
- 
+$env:OTEL_RESOURCE_ATTRIBUTES="deployment.environment=production,service.version=1.0.0"
 
  
 
