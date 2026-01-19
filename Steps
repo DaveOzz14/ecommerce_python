@@ -1,0 +1,75 @@
+Creación Tenant de Grafana 
+
+Validar los detalles del tenant en https://grafana.com/orgs/<NOMBRE DEL STACK>/stacks 
+
+ 
+
+Crear el Collector:  
+
+Connect using OTLP protocol 
+
+Configurar:  Obtener Instance ID 
+
+Generar Token 
+
+Crear un Base64 con la instancia ID y el Token: 
+
+$texto = "1488890:glc_eyJvIjoiMTYzNTQ4NiIsIm4iOiJzdGFjay0xNDg4ODkwLW90bHAtd3JpdGUtbGFic18yXzIiLCJrIjoiNjhzM0V1N0c5QzlKMzNqOVg4b2JuRHhLIiwibSI6eyJyIjoicHJvZC11cy1lYXN0LTAifX0=" 
+
+$bytes = [System.Text.Encoding]::UTF8.GetBytes($texto) 
+
+[Convert]::ToBase64String($bytes) 
+
+ 
+
+ 
+
+Crear Variables de entorno en el Servidor en donde esta el sistema: Tomando el Base64  
+
+$env:OTEL_EXPORTER_OTLP_PROTOCOL="http/protobuf" 
+
+$env:OTEL_EXPORTER_OTLP_ENDPOINT="https://otlp-gateway-prod-us-east-2.grafana.net/otlp" 
+
+$env:OTEL_EXPORTER_OTLP_HEADERS="Authorization=Basic%20MTQ4ODg5MDpnbGNfZXlKdklqb2lNVFl6TlRRNE5pSXNJbTRpT2lKemRHRmpheTB4TkRnNE9Ea3dMVzkwYkhBdGQzSnBkR1V0YkdGaWMxOHlYeklpTENKcklqb2lOamh6TTBWMU4wYzVRemxLTXpOcU9WZzRiMkp1UkhoTElpd2liU0k2ZXlKeUlqb2ljSEp2WkMxMWN5MWxZWE4wTFRBaWZYMD0=" 
+
+$env:OTEL_EXPORTER_OTLP_TRACES_ENDPOINT="https://otlp-gateway-prod-us-east-2.grafana.net/otlp/v1/traces" 
+
+$env:OTEL_SERVICE_NAME="ecommerce-python" 
+
+$env:OTEL_RESOURCE_ATTRIBUTES="deployment.environment=production,service.version=1.0.0" 
+
+ 
+
+ 
+
+Github 
+
+Tener acceso al codigo de la aplicacion en GitHub repositorio/rama 
+
+Crear un Token Clasic con todos los permisos 
+
+Tener permisos crear branch/PR 
+
+ 
+
+Ingresar al tenant Grafana https://<NombredelStack>.grafana.net/ 
+
+Crear los 3 MCP GitHub añadiendo un Header : Autorization <TOKEN DE GITHUB> 
+
+ 
+
+ 
+
+Ejecutar el Prompt que va a leer el codigo, instrumentar, crear la rama y subir el codigo instrumentado a GitHub. 
+
+Pull Review Manual del codigo instrumentado 
+
+Ejecucion del codigo instrumentado. 
+
+El codigo va a lanzar telemetria apuntando a los endpoint puestos en las variables de entorno. 
+
+Envio de Telemetria al tenant de Grafana Labs. 
+
+Inicio de Analisis de Observabilidad desde negocio. 
+
+ 
