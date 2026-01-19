@@ -1,0 +1,19 @@
+./env/Scripts/activate
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+
+
+
+
+
+git init
+git status
+git add .
+git commit -m "Initial commit: simple ecommerce with FastAPI"
+git remote add origin https://github.com/DaveOzz14/ecommerce_python.git
+git remote set-url origin https://github.com/MoonCodeSRE/ecomm_py.git
+git remote -v
+git branch -M main
+git push -u origin main
+git pull origin main --allow-unrelated-histories
+git push -f origin main
