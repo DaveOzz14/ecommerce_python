@@ -27,15 +27,12 @@ $bytes = [System.Text.Encoding]::UTF8.GetBytes($texto)
 Crear Variables de entorno en el Servidor en donde esta el sistema: Tomando el Base64  
 
 $env:OTEL_EXPORTER_OTLP_PROTOCOL="http/protobuf" 
-
 $env:OTEL_EXPORTER_OTLP_ENDPOINT="https://otlp-gateway-prod-us-east-2.grafana.net/otlp" 
-
 $env:OTEL_EXPORTER_OTLP_HEADERS="Authorization=Basic%20MTQ4ODg5MDpnbGNfZXlKdklqb2lNVFl6TlRRNE5pSXNJbTRpT2lKemRHRmpheTB4TkRnNE9Ea3dMVzkwYkhBdGQzSnBkR1V0YkdGaWMxOHlYeklpTENKcklqb2lOamh6TTBWMU4wYzVRemxLTXpOcU9WZzRiMkp1UkhoTElpd2liU0k2ZXlKeUlqb2ljSEp2WkMxMWN5MWxZWE4wTFRBaWZYMD0=" 
-
 $env:OTEL_EXPORTER_OTLP_TRACES_ENDPOINT="https://otlp-gateway-prod-us-east-2.grafana.net/otlp/v1/traces" 
-
+$env:OTEL_EXPORTER_OTLP_METRICS_ENDPOINT=https://otlp-gateway-prod-us-east-2.grafana.net/otlp/v1/metrics
+$env:OTEL_EXPORTER_OTLP_LOGS_ENDPOINT=https://otlp-gateway-prod-us-east-2.grafana.net/otlp/v1/logs
 $env:OTEL_SERVICE_NAME="ecommerce-python" 
-
 $env:OTEL_RESOURCE_ATTRIBUTES="deployment.environment=production,service.version=1.0.0" 
 
  
