@@ -11,4 +11,7 @@ __pycache__/
 # Sistema operativo
 .DS_Store
 
+# Environment variables (IMPORTANT: Never commit credentials)
+.env
+
 README.md
